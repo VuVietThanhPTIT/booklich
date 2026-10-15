@@ -1,0 +1,177 @@
+/* ==========================================================================
+   DATE PLANNER (SCREEN 3) STYLES
+   ========================================================================== */
+
+.planner-card {
+  text-align: left;
+}
+
+.planner-card .card-title {
+  text-align: center;
+  font-size: 1.85rem;
+  margin-bottom: 22px;
+}
+
+.planner-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.label-hint {
+  font-weight: 500;
+  text-transform: none;
+  color: var(--accent-coral);
+  font-size: 0.72rem;
+}
+
+/* Custom Styled Inputs (Prevent zoom on mobile with 16px font) */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.custom-input {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: var(--bg-card-subtle);
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.input-with-icon .custom-input {
+  padding-right: 36px;
+}
+
+.input-icon {
+  position: absolute;
+  right: 12px;
+  pointer-events: none;
+  font-size: 1rem;
+}
+
+.custom-input:focus {
+  border-color: var(--accent-coral);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(224, 86, 86, 0.12);
+}
+
+/* Activity Chips Grid */
+.chips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+  margin-top: 2px;
+}
+
+.plan-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-card-subtle);
+  border: 1.5px solid rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #55504A;
+  cursor: pointer;
+  transition: var(--transition-spring);
+  text-align: left;
+  user-select: none;
+}
+
+.chip-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.plan-chip:active {
+  transform: scale(0.96);
+}
+
+.plan-chip.selected {
+  background-color: var(--accent-coral-soft);
+  border-color: var(--accent-coral);
+  color: var(--accent-coral);
+  box-shadow: 0 4px 12px -2px rgba(224, 86, 86, 0.2);
+}
+
+.plan-chip.selected .chip-icon {
+  transform: scale(1.15);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Submit Green Button */
+.btn-primary-green {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--accent-green);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 15px 20px;
+  border: none;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  margin-top: 8px;
+  box-shadow: var(--btn-shadow);
+  transition: var(--transition-spring);
+  user-select: none;
+}
+
+.btn-primary-green:active {
+  transform: scale(0.97);
+}
+
+.btn-primary-green:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spinLoader 0.75s infinite linear;
+}
+
+@keyframes spinLoader {
+  to { transform: rotate(360deg); }
+}
