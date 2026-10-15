@@ -1,7 +1,7 @@
 /**
  * dodge.js
- * Interaction for the elusive "No" button:
- * Moves/dodges to a new position ONLY WHEN CLICKED/TAPPED!
+ * Physics and interaction for the elusive "No" button:
+ * Dodges smoothly on BOTH mouse hover (mouseenter/mouseover) AND mobile touch/click (touchstart/pointerdown/click)!
  */
 
 class DodgeController {
@@ -27,7 +27,6 @@ class DodgeController {
   init() {
     if (!this.btnNo || !this.card) return;
 
-    // Trigger dodge ONLY when user clicks / taps on the button
     const handleTrigger = (e) => {
       if (e) {
         if (e.cancelable) e.preventDefault();
@@ -36,15 +35,20 @@ class DodgeController {
       this.handleDodge(e);
     };
 
-    // Support both mouse click and mobile tap
+    // 1. Desktop Mouse Hover & Click
+    this.btnNo.addEventListener('mouseenter', handleTrigger);
+    this.btnNo.addEventListener('mouseover', handleTrigger);
     this.btnNo.addEventListener('click', handleTrigger);
+
+    // 2. Mobile Touch & Pointer
     this.btnNo.addEventListener('touchstart', handleTrigger, { passive: false });
+    this.btnNo.addEventListener('pointerdown', handleTrigger);
   }
 
   handleDodge(e) {
-    // Cooldown check (prevent accidental double fires from touch + click within 200ms)
+    // Cooldown check (80ms to debounce multiple events on the same tap/hover)
     const now = Date.now();
-    if (now - this.lastDodgeTime < 200) return;
+    if (now - this.lastDodgeTime < 80) return;
     this.lastDodgeTime = now;
 
     // Play cute sound
@@ -118,6 +122,11 @@ class DodgeController {
   relocateNoButton() {
     if (!this.btnNo || !this.card) return;
 
+    // Move btnNo directly into card container so position: absolute is 100% relative to card
+    if (this.btnNo.parentElement !== this.card) {
+      this.card.appendChild(this.btnNo);
+    }
+
     this.btnNo.classList.add('dodging');
     this.btnNo.classList.remove('wobble');
     void this.btnNo.offsetWidth;
@@ -128,13 +137,13 @@ class DodgeController {
     const btnRect = this.btnNo.getBoundingClientRect();
 
     // Safe padding inside card
-    const padding = 16;
+    const padding = 20;
     const minX = padding;
-    const maxX = cardRect.width - btnRect.width - padding;
+    const maxX = Math.max(minX + 20, cardRect.width - btnRect.width - padding);
 
-    // Safe Y range: lower portion of the card near or below actions arena
-    const minY = cardRect.height * 0.58;
-    const maxY = cardRect.height - btnRect.height - padding;
+    // Safe Y range: lower portion of the card around and below the YES button
+    const minY = Math.max(cardRect.height * 0.62, cardRect.height - 120);
+    const maxY = Math.max(minY + 10, cardRect.height - btnRect.height - 18);
 
     // Calculate a position noticeably different from the last position
     let newX, newY;
@@ -146,8 +155,7 @@ class DodgeController {
       attempts++;
     } while (
       attempts < 10 &&
-      Math.abs(newX - this.lastX) < 45 &&
-      Math.abs(newY - this.lastY) < 35
+      Math.abs(newX - this.lastX) < 45
     );
 
     this.lastX = newX;
