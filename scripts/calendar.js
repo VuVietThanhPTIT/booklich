@@ -20,12 +20,12 @@ class CalendarHelper {
       const startIso = formatIsoTime(startDateTime);
       const endIso = formatIsoTime(endDateTime);
 
-      const title = encodeURIComponent("Đi chơi với Thành 💖");
+      const title = encodeURIComponent("Đi chơi với Thành");
       const details = encodeURIComponent(
-        `Kế hoạch đi chơi cùng Thành nè! ✨\n\n` +
-        `🎯 Hoạt động: ${activities.join(', ')}\n` +
-        (notes ? `💭 Ghi chú: ${notes}\n` : '') +
-        `\nĐã chốt lịch hẹn hò!`
+        `Kế hoạch đi chơi cùng Thành\n\n` +
+        `Hoạt động: ${activities.join(', ')}\n` +
+        (notes ? `Ghi chú: ${notes}\n` : '') +
+        `\nĐã chốt lịch hẹn!`
       );
       const location = encodeURIComponent(activities.join(', '));
 
