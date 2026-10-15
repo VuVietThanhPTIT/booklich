@@ -94,7 +94,7 @@
 
 /* Ticket Body */
 .ticket-body {
-  padding: 22px 20px 16px;
+  padding: 22px 20px 22px;
   display: flex;
   flex-direction: column;
   gap: 14px;
