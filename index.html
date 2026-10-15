@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#FAF7F5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>A Tiny Ask — Will you go out with me? 🌸</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/card.css">
+  <link rel="stylesheet" href="styles/flower.css">
+  <link rel="stylesheet" href="styles/planner.css">
+  <link rel="stylesheet" href="styles/ticket.css">
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <!-- Ambient background glow & floating particles -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="floating-hearts-container" id="ambientHearts" aria-hidden="true"></div>
+
+  <!-- Main App Shell (Centered for mobile viewport) -->
+  <main class="app-container">
+    
+    <!-- ==============================================
+         SCREEN 1: THE INVITATION & DODGE
+         ============================================== -->
+    <section class="card-screen active" id="screenAsk">
+      <div class="card-wrapper" id="invitationCard">
+        
+        <!-- Header Pill & Dodge Counter -->
+        <div class="card-header">
+          <div class="pill-badge" id="pillAsk">
+            <span class="pill-icon">🌸</span>
+            <span>A TINY ASK</span>
+          </div>
+          <div class="dodge-counter" id="dodgeCounter" aria-live="polite">
+            <span id="dodgeCountNum">0</span> <span id="dodgeLabel">dodges</span>
+          </div>
+        </div>
+
+        <!-- Question Title -->
+        <h1 class="card-title">
+          Will you go <br><span class="highlight-italic">out</span> with me?
+        </h1>
+
+        <!-- Dynamic Subtitle -->
+        <p class="card-subtitle" id="dynamicSubtitle">Catch No if you can.</p>
+
+        <!-- Blooming Flower Illustration -->
+        <div class="flower-container" id="flowerArea">
+          <svg class="flower-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Stem -->
+            <path class="flower-stem" d="M100 115 C100 145, 95 170, 92 190" stroke="#7E9A82" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Leaf -->
+            <path class="flower-leaf" d="M98 140 C115 130, 125 145, 110 155 C98 155, 98 145, 98 140 Z" fill="#99B89D" opacity="0.6"/>
+            
+            <!-- Layer 1: Petals Base -->
+            <g class="petals-group" id="petalsGroup">
+              <!-- Petal 1: Top -->
+              <ellipse class="petal petal-1" cx="100" cy="72" rx="24" ry="38" fill="#F8B195" opacity="0.45"/>
+              <!-- Petal 2: Top Right -->
+              <ellipse class="petal petal-2" cx="128" cy="85" rx="24" ry="38" transform="rotate(72 128 85)" fill="#F67280" opacity="0.4"/>
+              <!-- Petal 3: Bottom Right -->
+              <ellipse class="petal petal-3" cx="120" cy="118" rx="24" ry="38" transform="rotate(144 120 118)" fill="#F8B195" opacity="0.45"/>
+              <!-- Petal 4: Bottom Left -->
+              <ellipse class="petal petal-4" cx="80" cy="118" rx="24" ry="38" transform="rotate(216 80 118)" fill="#C06C84" opacity="0.35"/>
+              <!-- Petal 5: Top Left -->
+              <ellipse class="petal petal-5" cx="72" cy="85" rx="24" ry="38" transform="rotate(288 72 85)" fill="#F67280" opacity="0.4"/>
+            </g>
+            
+            <!-- Flower Center Core -->
+            <circle class="flower-core" cx="100" cy="100" r="10" fill="#FFC872" opacity="0.85"/>
+            <!-- Secondary Center Sparkle -->
+            <circle class="flower-spark" cx="100" cy="100" r="5" fill="#FFF2D6"/>
+          </svg>
+        </div>
+
+        <!-- Action Buttons Arena -->
+        <div class="actions-arena" id="actionsArena">
+          <button type="button" class="btn-yes" id="btnYes">
+            <span>YES</span>
+          </button>
+          
+          <button type="button" class="btn-no" id="btnNo">
+            <span id="btnNoText">No</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==============================================
+         SCREEN 2: CELEBRATION (YAY IT'S A DATE)
+         ============================================== -->
+    <section class="card-screen" id="screenCelebration">
+      <div class="card-wrapper celebration-card">
+        
+        <div class="card-header centered">
+          <div class="pill-badge success-pill">
+            <span class="pill-icon">✨</span>
+            <span>DATE CONFIRMED</span>
+          </div>
+        </div>
+
+        <h2 class="card-title celebration-title">
+          Yay — it's a <span class="highlight-italic">date.</span>
+        </h2>
+
+        <!-- Happy Animated Flower -->
+        <div class="flower-container bloomed-flower">
+          <div class="flower-glow"></div>
+          <svg class="flower-svg" viewBox="0 0 200 200" fill="none">
+            <path d="M100 115 C100 145, 95 170, 92 190" stroke="#7E9A82" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M98 140 C115 130, 125 145, 110 155 C98 155, 98 145, 98 140 Z" fill="#99B89D" opacity="0.7"/>
+            <g class="petals-group fully-bloomed">
+              <ellipse cx="100" cy="70" rx="28" ry="42" fill="#F8B195" opacity="0.6"/>
+              <ellipse cx="132" cy="84" rx="28" ry="42" transform="rotate(72 132 84)" fill="#F67280" opacity="0.55"/>
+              <ellipse cx="122" cy="122" rx="28" ry="42" transform="rotate(144 122 122)" fill="#F8B195" opacity="0.6"/>
+              <ellipse cx="78" cy="122" rx="28" ry="42" transform="rotate(216 78 122)" fill="#C06C84" opacity="0.5"/>
+              <ellipse cx="68" cy="84" rx="28" ry="42" transform="rotate(288 68 84)" fill="#F67280" opacity="0.55"/>
+            </g>
+            <circle cx="100" cy="100" r="13" fill="#FFC872"/>
+            <circle cx="100" cy="100" r="7" fill="#FFF2D6"/>
+          </svg>
+        </div>
+
+        <p class="celebration-subtitle">
+          I knew you had great taste 😎
+        </p>
+
+        <!-- Floating Hearts Row on Button -->
+        <div class="btn-with-hearts">
+          <div class="floating-hearts-dock">
+            <span class="mini-heart h1">💖</span>
+            <span class="mini-heart h2">💛</span>
+            <span class="mini-heart h3">💚</span>
+            <span class="mini-heart h4">💙</span>
+            <span class="mini-heart h5">💜</span>
+            <span class="mini-heart h6">💖</span>
+          </div>
+          <button type="button" class="btn-primary-coral" id="btnGoToPlan">
+            <span>Now let's plan it → 🗓️</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==============================================
+         SCREEN 3: DATE PLANNER (DAY, TIME & PLAN)
+         ============================================== -->
+    <section class="card-screen" id="screenPlan">
+      <div class="card-wrapper planner-card">
+        
+        <div class="card-header centered">
+          <div class="pill-badge gold-pill">
+            <span class="pill-icon">✨</span>
+            <span>LET'S MAKE IT OFFICIAL</span>
+          </div>
+        </div>
+
+        <h2 class="card-title">
+          Pick the <span class="highlight-italic">day, time & plan</span>
+        </h2>
+
+        <form id="datePlanForm" class="planner-form" onsubmit="return false;">
+          
+          <!-- Date & Time Grid -->
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label for="inputDate" class="form-label">WHICH DAY?</label>
+              <div class="input-with-icon">
+                <input type="date" id="inputDate" class="custom-input" required>
+                <span class="input-icon">📅</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputTime" class="form-label">WHAT TIME?</label>
+              <div class="input-with-icon">
+                <input type="time" id="inputTime" class="custom-input" value="19:00" required>
+                <span class="input-icon">⏰</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activity Chips / Pills Grid -->
+          <div class="form-group">
+            <label class="form-label">THE PLAN <span class="label-hint">(Pick one or more!)</span></label>
+            <div class="chips-grid" id="planChipsGrid">
+              
+              <button type="button" class="plan-chip selected" data-value="🍝 Dinner">
+                <span class="chip-icon">🍝</span>
+                <span>Dinner</span>
+              </button>
+
+              <button type="button" class="plan-chip selected" data-value="🍿 Movie">
+                <span class="chip-icon">🍿</span>
+                <span>Movie</span>
+              </button>
+
+              <button type="button" class="plan-chip" data-value="🍸 Drinks">
+                <span class="chip-icon">🍸</span>
+                <span>Drinks</span>
+              </button>
+
+              <button type="button" class="plan-chip" data-value="☕ Cozy Cafe">
+                <span class="chip-icon">☕</span>
+                <span>Cozy Cafe</span>
+              </button>
+
+              <button type="button" class="plan-chip" data-value="🧺 Sunset Picnic">
+                <span class="chip-icon">🧺</span>
+                <span>Picnic</span>
+              </button>
+
+              <button type="button" class="plan-chip" data-value="🎮 Arcade">
+                <span class="chip-icon">🎮</span>
+                <span>Arcade</span>
+              </button>
+
+              <button type="button" class="plan-chip" data-value="🍦 Ice Cream">
+                <span class="chip-icon">🍦</span>
+                <span>Ice Cream</span>
+              </button>
+
+              <button type="button" class="plan-chip" data-value="✨ Surprise me">
+                <span class="chip-icon">✨</span>
+                <span>Surprise me</span>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Special Note / Request -->
+          <div class="form-group">
+            <label for="inputNotes" class="form-label">ANY SPECIAL CRAVINGS OR REQUESTS? 💭</label>
+            <input type="text" id="inputNotes" class="custom-input" placeholder="e.g. Haidilao hotpot, matcha latte, etc.">
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn-primary-green" id="btnSubmitPlan">
+            <span id="btnSubmitPlanText">Lock in the date & plan ✍️</span>
+            <div class="loading-spinner hidden" id="submitSpinner"></div>
+          </button>
+
+        </form>
+
+      </div>
+    </section>
+
+
+    <!-- ==============================================
+         SCREEN 4: OFFICIAL DATE TICKET & CALENDAR
+         ============================================== -->
+    <section class="card-screen" id="screenTicket">
+      <div class="card-wrapper ticket-screen-card">
+        
+        <div class="card-header centered">
+          <div class="pill-badge success-pill">
+            <span class="pill-icon">💌</span>
+            <span>OFFICIAL DATE PASS</span>
+          </div>
+        </div>
+
+        <h2 class="card-title">
+          It's officially <span class="highlight-italic">locked in!</span>
+        </h2>
+        <p class="card-subtitle">Get ready for the best date ever ✨</p>
+
+        <!-- Cute Boarding Pass / Ticket -->
+        <div class="date-ticket" id="dateTicket">
+          
+          <div class="ticket-body">
+            <div class="ticket-row">
+              <div class="ticket-col">
+                <span class="ticket-label">DATE</span>
+                <span class="ticket-value" id="ticketDateDisplay">Friday, Oct 24</span>
+              </div>
+              <div class="ticket-col">
+                <span class="ticket-label">TIME</span>
+                <span class="ticket-value" id="ticketTimeDisplay">07:00 PM</span>
+              </div>
+            </div>
+
+            <div class="ticket-row">
+              <div class="ticket-col full-width">
+                <span class="ticket-label">ACTIVITIES</span>
+                <div class="ticket-tags" id="ticketActivitiesDisplay">
+                  <span class="t-tag">🍝 Dinner</span>
+                  <span class="t-tag">🍿 Movie</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-row" id="ticketNotesRow">
+              <div class="ticket-col full-width">
+                <span class="ticket-label">SPECIAL REQUEST</span>
+                <span class="ticket-value italic-note" id="ticketNotesDisplay">None</span>
+              </div>
+            </div>
+            
+            <div class="ticket-row dodge-stat">
+              <span class="ticket-dodge-stat" id="ticketDodgeStat">💖 Dodged 0 times — pure chemistry!</span>
+            </div>
+          </div>
+
+          <div class="ticket-footer">
+            <div class="barcode-strip">
+              <span>||| || |||| | ||||| ||| || |||| | |||</span>
+            </div>
+            <span class="ticket-seal">OFFICIALLY ADMIT TWO ✨</span>
+          </div>
+
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="ticket-actions">
+          <a id="btnGoogleCalendar" href="#" target="_blank" rel="noopener noreferrer" class="btn-action-calendar">
+            <span>📅 Add to Google Calendar</span>
+          </a>
+          
+          <a id="btnShareTicket" href="https://www.facebook.com/be.hoangtu.606/" target="_blank" rel="noopener noreferrer" class="btn-action-share">
+            <span>💌 Gửi đến cho Thành</span>
+          </a>
+        </div>
+
+        <p class="telegram-status" id="telegramStatusNotice"></p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sound Audio Synthesizer (Zero asset dependencies, cute pop sounds) -->
+  <script src="scripts/audio.js"></script>
+  <!-- Configuration (Telegram Bot Token & Chat ID) -->
+  <script src="scripts/config.js"></script>
+  <!-- Flower Blooming Logic -->
+  <script src="scripts/flower.js"></script>
+  <!-- Dodge Logic (Mobile Touch & Pointer) -->
+  <script src="scripts/dodge.js"></script>
+  <!-- Celebration Confetti -->
+  <script src="scripts/confetti.js"></script>
+  <!-- Telegram Dispatcher -->
+  <script src="scripts/telegram.js"></script>
+  <!-- Calendar Event Builder -->
+  <script src="scripts/calendar.js"></script>
+  <!-- Main App Coordinator -->
+  <script src="scripts/app.js"></script>
+</body>
+</html>
