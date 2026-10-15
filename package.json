@@ -1,0 +1,12 @@
+{
+  "name": "dichoivoithanhdee",
+  "version": "1.0.0",
+  "description": "A Tiny Ask - Date Invitation Web App",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve ."
+  },
+  "keywords": ["date-invitation", "aesthetic", "eazo-style"],
+  "author": "VuVietThanhPTIT",
+  "license": "MIT"
+}
