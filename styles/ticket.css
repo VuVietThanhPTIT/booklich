@@ -1,0 +1,263 @@
+/* ==========================================================================
+   OFFICIAL DATE TICKET & CALENDAR SCREEN (SCREEN 4)
+   ========================================================================== */
+
+.ticket-screen-card .card-title {
+  font-size: 1.95rem;
+  margin-bottom: 6px;
+}
+
+.ticket-screen-card .card-subtitle {
+  margin-bottom: 22px;
+}
+
+/* Boarding Pass / Date Ticket */
+.date-ticket {
+  background: #FFFDFB;
+  border: 1.5px solid rgba(224, 86, 86, 0.2);
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 12px 30px -8px rgba(180, 100, 80, 0.12);
+  overflow: hidden;
+  margin-bottom: 22px;
+  text-align: left;
+}
+
+/* Ticket Top Header */
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 12px;
+  background: #FFF7F4;
+  border-bottom: 1px solid rgba(224, 86, 86, 0.08);
+}
+
+.ticket-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ticket-heart {
+  font-size: 1rem;
+}
+
+.ticket-brand-text {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--accent-coral);
+}
+
+.ticket-serial {
+  font-family: monospace;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+/* Perforation Divider with Half-Circle Notches */
+.ticket-divider {
+  position: relative;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: -10px 0;
+  z-index: 5;
+}
+
+.notch {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--bg-card); /* Blends with screen card background */
+  box-shadow: inset 0 0 0 1.5px rgba(224, 86, 86, 0.2);
+}
+
+.notch-left {
+  left: -10px;
+}
+
+.notch-right {
+  right: -10px;
+}
+
+.dashed-line {
+  width: 82%;
+  border-bottom: 2px dashed rgba(224, 86, 86, 0.25);
+}
+
+/* Ticket Body */
+.ticket-body {
+  padding: 22px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ticket-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ticket-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ticket-col.full-width {
+  width: 100%;
+}
+
+.ticket-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+.ticket-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.ticket-value.italic-note {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+/* Activity Tags inside Ticket */
+.ticket-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.t-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--accent-coral-soft);
+  color: var(--accent-coral);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.dodge-stat {
+  padding-top: 4px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.06);
+}
+
+.ticket-dodge-stat {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #C06C84;
+}
+
+/* Ticket Footer & Barcode */
+.ticket-footer {
+  padding: 10px 20px 14px;
+  background: #FFFBF9;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.barcode-strip {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  opacity: 0.55;
+}
+
+.ticket-seal {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #6C9A74;
+  background: var(--accent-green-soft);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* Ticket Action Buttons */
+.ticket-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-action-calendar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent-green);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 20px;
+  border-radius: var(--radius-btn);
+  box-shadow: var(--btn-shadow);
+  transition: var(--transition-spring);
+}
+
+.btn-action-calendar:active {
+  transform: scale(0.97);
+}
+
+.btn-action-share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-card-subtle);
+  color: var(--text-main);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  font-weight: 600;
+  padding: 13px 20px;
+  border: 1.5px solid rgba(0, 0, 0, 0.09);
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition: var(--transition-spring);
+}
+
+.btn-action-share:active {
+  transform: scale(0.97);
+  background-color: #F5EFEB;
+}
+
+/* Telegram Dispatch Status notice */
+.telegram-status {
+  margin-top: 14px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  min-height: 18px;
+}
+
+.telegram-status.success {
+  color: #3B8256;
+}
+
+.telegram-status.error {
+  color: #B94A48;
+}
